@@ -7,7 +7,7 @@
 ## Requirements
 
 PYTHON:
-  * python >= 3.8
+  * python >= 3.7
   * biopython: `pip3 install biopython`
 
 TOOLS:
@@ -17,7 +17,9 @@ TOOLS:
 ## Installation
 
 ```  
-git clone https://github.com/ubercomrade/pipeline.git  
+git clone https://github.com/ubercomrade/GenHack.git  
+cd GenHack/  
+pip install -e .  
 ```
 
 ## Usage

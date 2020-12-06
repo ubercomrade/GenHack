@@ -20,6 +20,7 @@ setup(
         "License :: OSI Approved :: Apache Software License",
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: Unix",
+        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         'Programming Language :: Cython',
         "Topic :: Scientific/Engineering :: Bio-Informatics"
@@ -27,5 +28,5 @@ setup(
     zip_safe=False,
     install_requires=install_requires,
     setup_requires=install_requires,
-    python_requires='>=3.8',
+    python_requires='>=3.7',
 )
