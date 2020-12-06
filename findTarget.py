@@ -29,13 +29,7 @@ def split_gbk(path, tmp_dir):
 def write_fasta(data, path):
     with open(path, 'a') as file:
         for record in data:
-            file.write('>{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\n'.format(record['locus'],
-                                                               record['start'],
-                                                               record['end'],
-                                                               record['strand'],
-                                                               record['product'],
-                                                               record['protein_id'],
-                                                               record['locus_tag']))
+            file.write('>{0}\t{1}\t{2}\n'.format(record['protein_id'], record['locus'], record['product']))
             file.write(record['seq'] + '\n\n')
     return(0)
 
