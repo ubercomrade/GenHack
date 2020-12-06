@@ -40,43 +40,47 @@ def write_fasta(data, path):
     return(0)
 
 
+# def parse_gbk(tmp_dir, file):
+#     container = []
+#     data = SeqIO.read("{0}/{1}".format(tmp_dir, file), "genbank")
+#     cds = [f for f in data.features if f.type == "CDS"]
+#     for i in cds:
+#         try:
+#             record = {}
+#             record['seq'] = i.qualifiers['translation'][0]
+#             record['locus'] = data.id
+#             record['locus_tag'] = i.qualifiers['locus_tag'][0]
+#             record['product'] = i.qualifiers['product'][0]
+#             record['protein_id']= i.qualifiers['protein_id'][0]
+#             record['start'] = int(i.location.start)
+#             record['end'] = int(i.location.end)
+#             record['strand'] = i.location.strand
+#             container.append(record)
+#         except:
+#             print('problem with {}'.format(i.qualifiers['locus_tag'][0]) )
+#     return(container)
+
+
+
 def parse_gbk(tmp_dir, file):
     container = []
     data = SeqIO.read("{0}/{1}".format(tmp_dir, file), "genbank")
     cds = [f for f in data.features if f.type == "CDS"]
     for i in cds:
-        try:
+        if 'translation' in i.qualifiers:
             record = {}
             record['seq'] = i.qualifiers['translation'][0]
             record['locus'] = data.id
-            record['locus_tag'] = i.qualifiers['locus_tag'][0]
+            if 'locus_tag' in i.qualifiers:
+                record['locus_tag'] = i.qualifiers['locus_tag'][0]
+            else:
+                record['locus_tag'] = 'None'
             record['product'] = i.qualifiers['product'][0]
             record['protein_id']= i.qualifiers['protein_id'][0]
             record['start'] = int(i.location.start)
             record['end'] = int(i.location.end)
             record['strand'] = i.location.strand
             container.append(record)
-        except:
-            print('problem with {}'.format(i.qualifiers['locus_tag'][0]) )
-    return(container)
-
-
-
-def parse_gbk(tmp_dir, file):
-    container = []
-    data = SeqIO.read("{0}/{1}".format(tmp_dir, file), "genbank")
-    cds = [f for f in data.features if f.type == "CDS"]
-    for i in cds:
-        record = {}
-        record['seq'] = i.qualifiers['translation'][0]
-        record['locus'] = data.id
-        record['locus_tag'] = i.qualifiers['locus_tag'][0]
-        record['product'] = i.qualifiers['product'][0]
-        record['protein_id']= i.qualifiers['protein_id'][0]
-        record['start'] = int(i.location.start)
-        record['end'] = int(i.location.end)
-        record['strand'] = i.location.strand
-        container.append(record)
     return(container)
 
 
